@@ -7,7 +7,7 @@
 
 PixelGaussian pioneers to generate **context-aware** Gaussian distributions for feed-foward 3D reconstruction compared with existing uniform pixel-wise paradigm.
 
-![teaser](.assets/teaser.png)
+![teaser](./assets/teaser.png)
 
 ## News
 - Training code coming soon.
