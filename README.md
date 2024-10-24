@@ -26,3 +26,17 @@ Existing generalizable 3D Gaussian splatting methods for 3D reconstruction typic
 Gaussian queries. With comparable efficiency, our PixelGaussian achieves an average PSNR improvement of around 6 dB in 3D reconstruction from arbitrary views.
 
 ![block illustration](./assets/block_illustration.png)
+
+
+## Getting Started
+
+### Installation
+
+1. Please clone this project, create a conda virtual environment and install the requirements in `requirement.txt`
+
+2. Download RealEstate10K, ACID datasets and corresponding assets following the instructions of [pixelSplat](https://github.com/dcharatan/pixelsplat/tree/main)
+
+3. Running the code by
+```bash
+python -m src.main +experiment=[re10k/acid] data_loader.train.batch_size=[batch_size]
+```
