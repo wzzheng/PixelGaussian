@@ -7,7 +7,7 @@
 
 PixelGaussian pioneers to generate **context-aware** Gaussian distributions for feed-foward 3D reconstruction compared with existing uniform pixel-wise paradigm.
 
-![teaser](./assets/teaser.png)
+![teaser](./figs/teaser.png)
 
 ## News
 - Training code coming soon.
@@ -16,16 +16,16 @@ PixelGaussian pioneers to generate **context-aware** Gaussian distributions for 
 - **[2024/10/18]** Demo released.
 
 ## Demo
-![demo](./assets/demo.gif)
+![demo](./figs/demo.gif)
 
 ## Overview
 
-![pipeline](./assets/pipeline.png)
+![pipeline](./figs/pipeline.png)
 
 Existing generalizable 3D Gaussian splatting methods for 3D reconstruction typically assign a fixed number of Gaussians to each pixel, leading to inefficiency in capturing local geometry and overlap across views. In comparison, we propose a PixelGaussian model consisting of Cascade Gaussian Adapter (CGA) and Iterative Gaussian Refiner (IGR) blocks. In CGA, the initial Gaussians goes through adaptive splitting and pruning operations guided by a keypoint scorer and context-aware hypernets. After CGA, more Gaussians are allocated in regions with rich geometric details, while duplicated and redundant Gaussians across views are removed. Furthermore, to enable such adaptive Gaussians to fully capture local information within images, IGR refines Gaussian representations via deformable attention between image features and
 Gaussian queries. With comparable efficiency, our PixelGaussian achieves an average PSNR improvement of around 6 dB in 3D reconstruction from arbitrary views.
 
-![block illustration](./assets/block_illustration.png)
+![block illustration](./figs/block_illustration.png)
 
 
 ## Getting Started
