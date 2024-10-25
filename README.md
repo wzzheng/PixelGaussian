@@ -1,32 +1,33 @@
 # PixelGaussian: Generalizable 3D Gaussian Reconstruction From Arbitrary Views
 
-<!--paper link and url-->
-### [Paper]() | [Prject Page]()
+### [Paper](https://arxiv.org/abs/) | [Prject Page](https://wzzheng.net/PixelGaussian)
 
-> [Xin Fei](https://scholar.google.com/citations?hl=zh-CN&user=r9rsD_0AAAAJ), [Wenzhao Zheng](https://wzzheng.net/), [Yueqi Duan](https://duanyueqi.github.io/), [Wei Zhan](https://zhanwei.site/), [Masayoshi Tomizuka](https://me.berkeley.edu/people/masayoshi-tomizuka/), [Kurt Keutzer](https://people.eecs.berkeley.edu/~keutzer/), [Jiwen Lu](http://ivg.au.tsinghua.edu.cn/Jiwen_Lu/)
+> [Xin Fei](https://scholar.google.com/citations?hl=zh-CN&user=r9rsD_0AAAAJ), [Wenzhao Zheng](https://wzzheng.net/)$\dagger$, [Yueqi Duan](https://duanyueqi.github.io/), [Wei Zhan](https://zhanwei.site/), [Masayoshi Tomizuka](https://me.berkeley.edu/people/masayoshi-tomizuka/), [Kurt Keutzer](https://people.eecs.berkeley.edu/~keutzer/), [Jiwen Lu](http://ivg.au.tsinghua.edu.cn/Jiwen_Lu/)
 
-PixelGaussian pioneers to generate **context-aware** Gaussian distributions for feed-foward 3D reconstruction compared with existing uniform pixel-wise paradigm.
+$\dagger$ Project leader
+
+Most existing generalizable 3D Gaussian splatting methods (e.g., pixelSplat, MVSplat) assign a fixed number of Gaussians to each pixel, leading to inefficiency in capturing local geometry and overlap across views.  Differently, **our PixelGaussian dynamically adjusts the Gaussian distributions based on geometric complexity in a feed-forward framework.**  With comparable efficiency, PixelGaussian (trained using 2 views) successfully generalizes to various numbers of input views with adaptive Gaussian densities.
 
 ![teaser](./figs/teaser.png)
 
 ## News
-- Training code coming soon.
-- Project page coming soon.
-- **[2024/10/18]** Paper released on [arXiv]().
-- **[2024/10/18]** Demo released.
+- **[2024/10/25]** Code release.
+- **[2024/10/25]** Paper released on [arXiv](https://arxiv.org/abs/).
 
-## Demo
-![demo](./figs/demo.gif)
+## Visualizations
+![pipeline](./figs/visualizations.png)
 
 ## Overview
 
 ![pipeline](./figs/pipeline.png)
 
-Existing generalizable 3D Gaussian splatting methods for 3D reconstruction typically assign a fixed number of Gaussians to each pixel, leading to inefficiency in capturing local geometry and overlap across views. In comparison, we propose a PixelGaussian model consisting of Cascade Gaussian Adapter (CGA) and Iterative Gaussian Refiner (IGR) blocks. In CGA, the initial Gaussians goes through adaptive splitting and pruning operations guided by a keypoint scorer and context-aware hypernets. After CGA, more Gaussians are allocated in regions with rich geometric details, while duplicated and redundant Gaussians across views are removed. Furthermore, to enable such adaptive Gaussians to fully capture local information within images, IGR refines Gaussian representations via deformable attention between image features and
-Gaussian queries. With comparable efficiency, our PixelGaussian achieves an average PSNR improvement of around 6 dB in 3D reconstruction from arbitrary views.
+Given multi-view input images, we initialize 3D Gaussians using a lightweight image encoder and cost volume. Cascade Gaussian Adapter (CGA) then dynamically adapts both the distribution and quantity of Gaussians. By leveraging local image features, Iterative Gaussian Refiner (IGR) further refines Gaussian representations via deformable attention. Finally, novel views are rendered from the refined 3D Gaussians using rasterization-based rendering.
 
-![block illustration](./figs/block_illustration.png)
+## Results
 
+![pipeline](./figs/results.png)
+
+PixelGaussian achieves the best performance on the two representative datasets. Trained with 2 reference views, PixelGaussian can generalize to more views.
 
 ## Getting Started
 
@@ -39,4 +40,20 @@ Gaussian queries. With comparable efficiency, our PixelGaussian achieves an aver
 3. Running the code by
 ```bash
 python -m src.main +experiment=[re10k/acid] data_loader.train.batch_size=[batch_size]
+```
+
+## Related Projects
+
+Our code is based [MVSplat](https://github.com/donydchen/mvsplat) and [GaussianFormer](https://github.com/huang-yh/GaussianFormer) and is also inspired by [pixelSplat](https://github.com/dcharatan/pixelsplat) and  [SelfOcc](https://github.com/huang-yh/SelfOcc).
+
+## Citation
+
+If you find this project helpful, please consider citing the following paper:
+```
+@article{fei2024pixel,
+    title={PixelGaussian: Generalizable 3D Gaussian Reconstruction From Arbitrary Views},
+    author={Fei, Xin and Zheng, Wenzhao and Duan, Yueqi and Zhan, Wei and Tomizuka, Masayoshi and Keutzer, Kurt and Lu, Jiwen},
+    journal={arXiv preprint arXiv:},
+    year={2024}
+}
 ```
